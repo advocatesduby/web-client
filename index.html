@@ -649,7 +649,7 @@
 			var template_params={};
 			template_params.name = senderName;
 			template_params.reply_email=senderEmail;
-			template_params.message=comments;
+			template_params.notes=comments;
 
 			  console.log("template_params " +JSON.stringify(template_params));
 			  emailjs.send(service_id,template_id,template_params);
