@@ -34,7 +34,7 @@
 
 					<textarea name="comments"  class="input-style" placeholder="Your Comment"></textarea>
 
-					<button type="submit" class="theme-btn submit" >SEND 3</button>
+					<button type="submit" class="theme-btn submit" id="send_message">SEND</button>
 				</form>
 			</div>
 		</div><!-- Widget -->
@@ -546,8 +546,16 @@
 	<script src="js/waypoints.js"></script>
 	<script src="js/scroll-up-bar.js"></script>
 	<script src="js/enscroll.js"></script>
+	<script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script type="text/javascript">
+  (function() {
+    emailjs.init("user_t83BUBPNNYZ99XhVkhLbo");
+  })();
+
+</script>
 
 	<script type="text/javascript">
+
 		jQuery(document).ready(function(){
 
 		$('.menu-bar').scrollupbar();
@@ -630,8 +638,28 @@
 			}
 		});
 
+		$("#send_message").click(function(){
+			alert("Mail send");
+
+			var senderName = $("input[name=name]").val();
+			var senderEmail = $("input[name=email]").val();
+			var comments = $("textarea[name=comments]").val();
+			  var service_id = 'gmail';
+			  var template_id = 'advocates_send_email';
+
+			var template_params={};
+			template_params.name = senderName;
+			template_params.reply_email=senderEmail;
+			template_params.message=comments;
+
+			  console.log("template_params " +JSON.stringify(template_params));
+			  emailjs.send(service_id,template_id,template_params);
 
 		});
+
+		});
+
+
 	</script>
 
 </body>
